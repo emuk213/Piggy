@@ -5,20 +5,16 @@ def body(center, size, a, color):
     volume = size[0] * size[1] * size[2]
     cube_size = (volume / a) ** (1 / 3)
 
-    # kiek kubu
     num_x = int(size[0] / cube_size)
     num_y = int(size[1] / cube_size)
     num_z = int(size[2] / cube_size)
 
-    #pakoreguoja staciakampio dydi kad normaliai tilptu visi kubeliai
     effective_size = [num_x * cube_size, num_y * cube_size, num_z * cube_size]
 
-    #apskaiciuojama staciakampio kairio sono (apacioj) koord, nuo ten delios kubelius
     start_x = center[0] - effective_size[0] / 2
     start_y = center[1] - effective_size[1] / 2
     start_z = center[2] - effective_size[2] / 2
 
-    #staciakampi uzpildo kubeliais
     for i in range(num_x):
         for j in range(num_y):
             for k in range(num_z):
@@ -29,7 +25,6 @@ def body(center, size, a, color):
                 ]
                 cube(cube_center, cube_size, color)
 
-#veidas:
 def face(center):
     x = center[0]
     y = center[1]
@@ -37,7 +32,6 @@ def face(center):
 
     n1 = 0
 
-    #nosis:
     for i in range(2):
         rectangle3D([x, y + n1, z], [0.7, 0.2, 0.1], [255, 198, 197])
         n1 = 0.4
@@ -49,7 +43,6 @@ def face(center):
         rectangle3D([x - n2, y + 0.2, z], [0.19, 0.202, 0.1], [81, 21, 21])
         n2 = -0.255
 
-    #akys
     e1 = 0.6
     e2 = -0.445
     e3 = 0.19
@@ -59,7 +52,7 @@ def face(center):
         e2 = -e2
         e3 = -e3
 
-def keupre(center):
+def hat(center):
     x = center[0]
     y = center[1]
     z = center[2]
@@ -68,7 +61,6 @@ def keupre(center):
     add.sphere([x, y + 1.5, z], 0.15, 100, [255, 255, 255])
 
 
-#kojos:
 x1 = 0.7
 xn1 = 0.9
 for i in range(2):
@@ -93,7 +85,7 @@ for a in range(2):
 body([0, 0, 0], [2.5, 1.8, 3.6], 6000, [255, 140, 138])
 body([0, 0.5, 2], [1.6, 1.6, 1.6], 4000, [255, 140, 138])
 face([0, 0.1, 2.8])
-keupre([0, 1.1, 2])
+hat([0, 1.1, 2])
 
 add.off("piggy.off")
 
